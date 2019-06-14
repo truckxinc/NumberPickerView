@@ -940,6 +940,10 @@ public class NumberPickerView extends View {
         mPaintHint.setTypeface(typeface);
     }
 
+    public void setShownCount(int shownCount){
+        mShownCount = shownCount;
+    }
+
     //return index relative to mDisplayedValues from 0.
     private int getWillPickIndexByGlobalY(int globalY) {
         if (mItemHeight == 0) return 0;
@@ -948,8 +952,7 @@ public class NumberPickerView extends View {
         if (0 <= index && index < getOneRecycleSize()) {
             return index + mMinShowIndex;
         } else {
-            throw new IllegalArgumentException("getWillPickIndexByGlobalY illegal index : " + index
-                    + " getOneRecycleSize() : " + getOneRecycleSize() + " mWrapSelectorWheel : " + mWrapSelectorWheel);
+            return getOneRecycleSize() - 1;
         }
     }
 
