@@ -1,4 +1,4 @@
-package cn.carbswang.android.numberpickerview.library;
+package com.henninghall.date_picker;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -326,7 +326,8 @@ public class NumberPickerView extends View {
 
         mPaintText.setColor(mTextColorNormal);
         mPaintText.setAntiAlias(true);
-        mPaintText.setTextAlign(Align.CENTER);
+
+        mPaintText.setTextAlign(Align.RIGHT);
 
         mPaintHint.setColor(mTextColorHint);
         mPaintHint.setAntiAlias(true);
@@ -944,6 +945,10 @@ public class NumberPickerView extends View {
         mShownCount = shownCount;
     }
 
+    public void setTextAlign(Align textAlign) {
+        mPaintText.setTextAlign(textAlign);
+    }
+
     //return index relative to mDisplayedValues from 0.
     private int getWillPickIndexByGlobalY(int globalY) {
         if (mItemHeight == 0) return 0;
@@ -1287,7 +1292,12 @@ public class NumberPickerView extends View {
                 if (mTextEllipsize != null) {
                     str = TextUtils.ellipsize(str, mPaintText, getWidth() - 2 * mItemPaddingHorizontal, getEllipsizeType());
                 }
-                canvas.drawText(str.toString(), mViewCenterX,
+
+                float textStartPosX = mPaintText.getTextAlign() == Align.RIGHT
+                        ? mViewWidth - mItemPaddingHorizontal
+                        : mItemPaddingHorizontal;
+
+                canvas.drawText(str.toString(), textStartPosX,
                         y + mItemHeight / 2 + textSizeCenterYOffset, mPaintText);
             } else if (!TextUtils.isEmpty(mEmptyItemHint)) {
                 canvas.drawText(mEmptyItemHint, mViewCenterX,
@@ -1410,7 +1420,7 @@ public class NumberPickerView extends View {
     private void inflateDisplayedValuesIfNull() {
         if (mDisplayedValues == null) {
             mDisplayedValues = new String[1];
-            mDisplayedValues[0] = "0";
+            mDisplayedValues[0] = "";
         }
     }
 
