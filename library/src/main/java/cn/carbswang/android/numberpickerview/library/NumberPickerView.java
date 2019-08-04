@@ -356,7 +356,7 @@ public class NumberPickerView extends View {
                             if (mScrollState == OnScrollListener.SCROLL_STATE_IDLE) {
                                 onScrollStateChange(OnScrollListener.SCROLL_STATE_TOUCH_SCROLL);
                             }
-                            mHandlerInNewThread.sendMessageDelayed(getMsg(HANDLER_WHAT_REFRESH, 0, 0, msg.obj), HANDLER_INTERVAL_REFRESH);
+                                                        mHandlerInNewThread.sendMessageDelayed(getMsg(HANDLER_WHAT_REFRESH, 0, 0, msg.obj), HANDLER_INTERVAL_REFRESH);
                         } else {
                             int duration = 0;
                             int willPickIndex;
@@ -673,8 +673,8 @@ public class NumberPickerView extends View {
                     mOnValueChangeListenerRaw.onValueChangeRelativeToRaw(NumberPickerView.this, oldVal, newVal, mDisplayedValues);
                 }
             }
+            mPrevPickedIndex = newVal;
         }
-        mPrevPickedIndex = newVal;
         if (mPendingWrapToLinear) {
             mPendingWrapToLinear = false;
             internalSetWrapToLinear();
@@ -728,7 +728,7 @@ public class NumberPickerView extends View {
         if (needRespond) {
             mHandlerInNewThread.sendMessageDelayed(getMsg(HANDLER_WHAT_REFRESH), duration / 4);
         } else {
-            mHandlerInNewThread.sendMessageDelayed(getMsg(HANDLER_WHAT_REFRESH, 0, 0, new Boolean(needRespond)), duration / 4);
+                        mHandlerInNewThread.sendMessageDelayed(getMsg(HANDLER_WHAT_REFRESH, 0, 0, new Boolean(needRespond)), duration / 4);
         }
         postInvalidate();
     }
