@@ -165,7 +165,7 @@ https://github.com/Carbs0126/GregorianLunarCalendar
         <attr name="npv_DividerMarginLeft" format="reference|dimension" />//divider距左侧的距离
         <attr name="npv_DividerMarginRight" format="reference|dimension" />//divider距右侧的距离
         <attr name="npv_DividerHeight" format="reference|dimension" />//divider的高度
-        <attr name="npv_TextColorNormal" format="reference|color" />//未选中文字的颜色
+    <attr name="npv_TextColorNormal" format="reference|color" />//未选中文字的颜色
         <attr name="npv_TextColorSelected" format="reference|color" />//选中文字的颜色
         <attr name="npv_TextColorHint" format="reference|color" />//中间偏右侧说明文字的颜色
         <attr name="npv_TextSizeNormal" format="reference|dimension" />//未选中文字的大小
@@ -297,3 +297,9 @@ email: yeah0126@yeah.net
 [4]: https://github.com/Carbs0126/Screenshot/blob/master/numberpickerview_refine1.gif
 [5]: https://github.com/Carbs0126/Screenshot/blob/master/numberpickerview_refine2.gif
 [6]: https://github.com/Carbs0126/NumberPickerView/blob/master/README_English.md
+
+
+## Release 
+Release via bintray by:
+1. Bump version number library/build.gradle
+2. Run: `./gradlew clean build bintrayUpload -PbintrayUser=USERNAME -PbintrayKey=API_KEY -PdryRun=false`
