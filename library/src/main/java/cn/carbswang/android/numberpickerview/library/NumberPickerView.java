@@ -524,6 +524,7 @@ public class NumberPickerView extends View {
         mPrevPickedIndex = pickedIndex + mMinShowIndex;
         correctPositionByDefaultValue(pickedIndex, mWrapSelectorWheel && mWrapSelectorWheelCheck);
         if (needRefresh) {
+            initHandlerIfDead();
             mHandlerInNewThread.sendMessageDelayed(getMsg(HANDLER_WHAT_REFRESH), 0);
             postInvalidate();
         }
@@ -685,11 +686,18 @@ public class NumberPickerView extends View {
         scrollByIndexSmoothly(deltaIndex, true);
     }
 
+    private void initHandlerIfDead(){
+        if(!mHandlerThread.isAlive()){
+            initHandler();
+        }
+    }
+
     /**
      * @param deltaIndex  the delta index it will scroll by
      * @param needRespond need Respond to the ValueChange callback When Scrolling, default is false
      */
     private void scrollByIndexSmoothly(int deltaIndex, boolean needRespond) {
+        initHandlerIfDead();
         if (!(mWrapSelectorWheel && mWrapSelectorWheelCheck)) {
             int willPickRawIndex = getPickedIndexRelativeToRaw();
             if (willPickRawIndex + deltaIndex > mMaxShowIndex) {
@@ -1047,6 +1055,7 @@ public class NumberPickerView extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        initHandlerIfDead();
         if (mItemHeight == 0) return true;
 
         if (mVelocityTracker == null) {
@@ -1465,6 +1474,7 @@ public class NumberPickerView extends View {
     public void stopScrollingAndCorrectPosition() {
         stopScrolling();
         if (mHandlerInNewThread != null) {
+            initHandlerIfDead();
             mHandlerInNewThread.sendMessageDelayed(getMsg(HANDLER_WHAT_REFRESH), 0);
         }
     }
