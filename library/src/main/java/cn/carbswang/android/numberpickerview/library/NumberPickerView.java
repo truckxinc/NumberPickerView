@@ -840,6 +840,13 @@ public class NumberPickerView extends View {
         postInvalidate();
     }
 
+    public void setDividerHeight(int height) {
+        if (mDividerHeight == height) return;
+        mDividerHeight = height;
+        mPaintDivider.setStrokeWidth(height);
+        postInvalidate();
+    }
+
     public void setPickedIndexRelativeToRaw(int pickedIndexToRaw) {
         if (mMinShowIndex > -1) {
             if (mMinShowIndex <= pickedIndexToRaw && pickedIndexToRaw <= mMaxShowIndex) {
