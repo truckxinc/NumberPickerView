@@ -302,4 +302,4 @@ email: yeah0126@yeah.net
 ## Release 
 Release via bintray by:
 1. Bump version number library/build.gradle
-2. Run: `./gradlew clean build bintrayUpload -PbintrayUser=USERNAME -PbintrayKey=API_KEY -PdryRun=false`
+2. Run: `./gradlew clean build bintrayUpload -PbintrayUser=henninghall -PbintrayKey=API_KEY -PdryRun=false`
