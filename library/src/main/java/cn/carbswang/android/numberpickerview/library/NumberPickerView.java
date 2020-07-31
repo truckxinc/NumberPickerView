@@ -356,7 +356,7 @@ public class NumberPickerView extends View {
                             if (mScrollState == OnScrollListener.SCROLL_STATE_IDLE) {
                                 onScrollStateChange(OnScrollListener.SCROLL_STATE_TOUCH_SCROLL);
                             }
-                                                        mHandlerInNewThread.sendMessageDelayed(getMsg(HANDLER_WHAT_REFRESH, 0, 0, msg.obj), HANDLER_INTERVAL_REFRESH);
+                            mHandlerInNewThread.sendMessageDelayed(getMsg(HANDLER_WHAT_REFRESH, 0, 0, msg.obj), HANDLER_INTERVAL_REFRESH);
                         } else {
                             int duration = 0;
                             int willPickIndex;
@@ -736,7 +736,7 @@ public class NumberPickerView extends View {
         if (needRespond) {
             mHandlerInNewThread.sendMessageDelayed(getMsg(HANDLER_WHAT_REFRESH), duration / 4);
         } else {
-                        mHandlerInNewThread.sendMessageDelayed(getMsg(HANDLER_WHAT_REFRESH, 0, 0, new Boolean(needRespond)), duration / 4);
+            mHandlerInNewThread.sendMessageDelayed(getMsg(HANDLER_WHAT_REFRESH, 0, 0, new Boolean(needRespond)), duration / 4);
         }
         postInvalidate();
     }
@@ -844,6 +844,11 @@ public class NumberPickerView extends View {
         if (mDividerHeight == height) return;
         mDividerHeight = height;
         mPaintDivider.setStrokeWidth(height);
+        postInvalidate();
+    }
+
+    public void setItemPaddingHorizontal(int height) {
+        mItemPaddingHorizontal = height;
         postInvalidate();
     }
 
@@ -1310,8 +1315,8 @@ public class NumberPickerView extends View {
                 }
 
                 float textStartPosX = mPaintText.getTextAlign() == Align.RIGHT
-                        ? mViewWidth - mItemPaddingHorizontal
-                        : mItemPaddingHorizontal;
+                        ? mViewWidth - mItemPaddingHorizontal * 2
+                        : mItemPaddingHorizontal * 2;
 
                 canvas.drawText(str.toString(), textStartPosX,
                         y + mItemHeight / 2 + textSizeCenterYOffset, mPaintText);
