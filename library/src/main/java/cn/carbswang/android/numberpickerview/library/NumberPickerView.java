@@ -1491,6 +1491,11 @@ public class NumberPickerView extends View {
         }
     }
 
+    public boolean isScrolling() {
+        if(mScroller == null) return false;
+        return mScrollState == OnScrollListener.SCROLL_STATE_FLING;
+    }
+
     private Message getMsg(int what) {
         return getMsg(what, 0, 0, null);
     }
