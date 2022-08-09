@@ -281,4 +281,10 @@ enjoy<br>
 [3]: https://github.com/Carbs0126/Screenshot/blob/master/gregorian_refine.gif
 [4]: https://github.com/Carbs0126/Screenshot/blob/master/numberpickerview_refine1.gif
 [5]: https://github.com/Carbs0126/Screenshot/blob/master/numberpickerview_refine2.gif
-[6]: https://github.com/Carbs0126/NumberPickerView/blob/master/README_ch.md
+[6]: https://github.com/Carbs0126/NumberPickerView/blob/master/README_English.md
+
+
+## Release 
+Release via bintray by:
+1. Bump version number library/build.gradle
+2. Run: `./gradlew clean build bintrayUpload -PbintrayUser=henninghall -PbintrayKey=API_KEY -PdryRun=false`

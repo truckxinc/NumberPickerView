@@ -20,3 +20,13 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 }
+
+publish {
+    userOrg = 'henninghall'
+    groupId = 'com.henninghall.android'
+    repoName= 'NumberPickerView'
+    artifactId = 'NumberPickerView'
+    publishVersion = '1.1.5'
+    desc = 'another NumberPicker with more flexible attributes on Android platform'
+    website = 'https://github.com/henninghall/NumberPickerView'
+}
